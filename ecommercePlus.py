@@ -1,252 +1,207 @@
-cart = []
-total = []
 
-def groceryFunc(var):
-    if var == "rice":
-        rate = 300
-    elif var == "wheat flour":
-        rate = 250
-    elif var == "cooking oil":
-        rate = 550
-    elif var == "sugar":
-        rate = 180
-    elif var == "salt":
-        rate = 50
-    elif var == "tea":
-        rate = 900
-    elif var == "coffee":
-        rate = 1200
-    elif var == "spices":
-        rate = 400
-    elif var == "lentils":
-        rate = 350
-    elif var == "milk":
-        rate = 200
-    elif var == "eggs":
-        rate = 300
-    elif var == "butter":
-        rate = 850
-    elif var == "bread":
-        rate = 120
-    elif var == "biscuits":
-        rate = 150
-    elif var == "noodles":
-        rate = 100
+stock=["pulses","spices","dairy","rice","wheat","computer","mobile_phone","led","graphic_card","charger","mango","potato","apple","spinach","tomato","green_chilli","grapes","onion","pents","shirt","belt","trouser","hoodie","jackets","muffler","panadol","brufen","bascopan","relief","surbex_z","risek"]
+inventoryList=[]
+cart=[] 
+total=[]
+
+
+def rate_option(var):
+    if var=="pulses":
+        rate=500
+    elif var=="spices":
+        rate=150
+    elif var=="dairy":
+        rate=300
+    elif var=="rice":
+        rate=4000
+    elif var=="wheat":
+        rate=3000
+    elif var=="computer":
+        rate=20000
+    elif var=="mobile_phone":
+        rate=50000
+    elif var=="led":
+        rate=60000
+    elif var=="graphic_card":
+        rate=50000
+    elif var=="charger":
+        rate=1200
+    elif var=="mango":
+        rate=200
+    elif var=="potato":
+        rate=100
+    elif var=="apple":
+        rate=180
+    elif var=="spinach":
+        rate=250
+    elif var=="tomato":
+        rate=150
+    elif var=="green_chilli":
+        rate=100
+    elif var=="grapes":
+        rate=400
+    elif var=="onion":
+        rate=120
+    elif var=="pents":
+        rate=4000
+    elif var=="shirt":
+        rate=3000
+    elif var=="belt":
+        rate=500
+    elif var=="hoodie":
+        rate=3000
+    elif var=="jackets":
+        rate=5000
+    elif var=="muffler":
+        rate=1500
+    elif var=="panadol":
+        rate=45
+    elif var=="brufen":
+        rate=40
+    elif var=="bascopan":
+        rate=30
+    elif var=="relief":
+        rate=100
+    elif var=="surbex_z":
+        rate=700
+    elif var=="risek":
+        rate=300
     else:
-        rate = 0
+        print("invalid value, please check your outer program!")
+        rate=0
     return rate
-
-def electronicFunc(var):
-    if var == "juicer machine":
-        rate = 4500
-    elif var == "iron":
-        rate = 2500
-    elif var == "washing machine":
-        rate = 55000
-    elif var == "blender":
-        rate = 3500
-    elif var == "air conditioner":
-        rate = 120000
-    elif var == "refrigerator":
-        rate = 95000
-    elif var == "microwave oven":
-        rate = 30000
-    elif var == "electric kettle":
-        rate = 4000
-    elif var == "vacuum cleaner":
-        rate = 18000
-    elif var == "water dispenser":
-        rate = 25000
-    elif var == "ceiling fan":
-        rate = 7000
-    elif var == "LED TV":
-        rate = 85000
-    elif var == "room heater":
-        rate = 6000
-    elif var == "dishwasher":
-        rate = 110000
-    elif var == "coffee maker":
-        rate = 15000
-    else:
-        return None
-    return rate
-
-def fashionFunc(var):
-    if var == "t shirt":
-        rate = 1500
-    elif var == "jeans":
-        rate = 3500
-    elif var == "jacket":
-        rate = 6000
-    elif var == "sneakers":
-        rate = 8000
-    elif var == "formal shoes":
-        rate = 7000
-    elif var == "watch":
-        rate = 12000
-    elif var == "handbag":
-        rate = 5000
-    elif var == "sunglasses":
-        rate = 2500
-    elif var == "belt":
-        rate = 1500
-    elif var == "cap":
-        rate = 1200
-    elif var == "wallet":
-        rate = 2000
-    elif var == "kurta":
-        rate = 4000
-    elif var == "abaya":
-        rate = 6500
-    elif var == "scarf":
-        rate = 1800
-    elif var == "socks":
-        rate = 500
-    else:
-        rate = 0
-    return rate
-
-    
-def receipt(cart, total):
-    print("\nThank You for buying from lelo ecommerce store.")
-
+   
+def calc_total(cart,total):
+    print(f"Your Total cart is:")
     for i in range(0, len(cart)):
-        print(f"{i+1}- {cart[i]} Rs.{total[i]}/-")
-        
-    print(f"\nTotal {len(cart)} items in your cart")
-    print(f"Total Amount Rs.{sum(total)}/-")
-    
+        print(f" {i+1}-{cart[i]}  | Rs.{total[i]}")
+    print(f"Your Total items are {len(cart)} and Rs.{sum(total)}/ ")
 
-def siteEngin (catName, items):
-    while True:
-        title = catName.capitalize()
-        print(f"\n ==== {title} ==== \n")
-        bucket = items
-        
-        for i in bucket:
-            print(f"-{i}")
+def modify(cart,total):
+        rem=input(f" Which item for a cart your want to remove? {cart} | please mention the product exactly:")
+        item_index=cart.index(rem)
+        cart.remove(rem)
+        print(rem, "removed from the cart.")
 
-        var = input("\nPlease mention what you want to add to cart from above list. \nNote: Type exactly from the list: ").lower()
-    
-        if catName == "grocery":
-            rate = groceryFunc(var)
-        elif catName == "electronic":
-            rate = electronicFunc(var)
-        elif catName == "clothes":
-            rate = fashionFunc(var)            
-        else:
-            print("Category not found")
-            
-        if var in bucket:
-            print(f"\n{var} Rs. {rate} Added to cart")
-            
-            cart.append(var)
-            total.append(rate)
-            
-            rerun = input(f"\nDo you want to continue buying {catName}? (yes/no)")
-
-            if rerun == "yes":
-                continue
-            elif rerun == "no":
-                break
-            else:
-                print("Invalid Input")
- 
-        else:
-            print("-" * 45)
-            print(f"{var} not found in the store. Check if there is a typing mistake!")
-            print("-" * 45)
-
-        
-print("\n====== Welcome to lelo ecommerce store! ====== \n")
-
-while True:
-    select = int(input("Select Category:\n1. Grocery \n2. Electronic \n3. Clothes\n-->| "))
-
-    if select == 1:
-        groceries = [
-        "rice",
-        "wheat flour",
-        "cooking oil",
-        "sugar",
-        "salt",
-        "tea",
-        "coffee",
-        "spices",
-        "lentils",
-        "milk",
-        "eggs",
-        "butter",
-        "bread",
-        "biscuits",
-        "noodles"]
-        siteEngin("grocery", groceries)
-           
-    elif select == 2:
-        electronics = [
-        "juicer machine",
-        "iron",
-        "washing machine",
-        "blender",
-        "air conditioner",
-        "refrigerator",
-        "microwave oven",
-        "electric kettle",
-        "vacuum cleaner",
-        "water dispenser",
-        "ceiling fan",
-        "LED TV",
-        "room heater",
-        "dishwasher",
-        "coffee maker"]
-        siteEngin("electronic", electronics)
-        
-    elif select == 3:
-        fashion = [
-        "t shirt",
-        "jeans",
-        "jacket",
-        "sneakers",
-        "formal shoes",
-        "watch",
-        "handbag",
-        "sunglasses",
-        "belt",
-        "cap",
-        "wallet",
-        "kurta",
-        "abaya",
-        "scarf",
-        "socks"]
-        siteEngin("clothes", fashion)
-    else:  
-        print("Invalid Category selecton Input...")
-        
-
-    menu = input("\nDo you want to continue buying? \n1. Continue Buying \n2. Remove Item \n3. Exit \n-->| ")
-    
-    if menu == "1":
-        continue
-    elif menu == "2":
-        print(f"\n==== Items in your cart =====\n")
-        
-        for i in cart:
-            print(f"- {i}")
-
-        itemName = input("\nEnter the item name to remove from your cart: ")
-        itemIndex = cart.index(itemName)
-        cart.remove(itemName)
-        total.pop(itemIndex)
-
-        print(f"\n==== Updated Cart ====\n")
- 
-    elif menu == "3":
-        print("\n==== Exiting =====.")
+def bucket(cat):
+    if cat=="1":
+        bucket=["pulses","spices","dairy","rice","wheat"]
+    elif cat=="2":
+        bucket=["computer","mobile_phone","led","graphic_card","charger"]
+    elif cat=="3":
+        bucket=["mango","potato","apple","spinach","tomato","green_chilli","grapes","onion"]
+    elif cat=="4":
+        bucket=["pents","shirt","belt","trouser","hoodie","jackets","muffler"]
+    elif cat=="5":
+        bucket=["panadol","brufen","bascopan","relief","surbex_z","risek"]
     else:
-        print("Invalid Input")
+        print("Invalid input!")
+    return bucket
+
+def engine(select,category):
+        while True:
+            print(f"Welcome to {category} section")
+            for i in bucket(select):
+                print(f"{bucket(select).index(i)+1}:{i} : {stock.count(i)}")
+            var=input("Please mention what your want to buy from above list?").lower()
+            if var in stock:
+               
+                rates=rate_option(var)
+                if var in bucket(select):
+                    cart.append(var)
+                    total.append(rates)
+                    print("=" * 60)
+                    print(f"bought item {var}, Rs.{rates}, Your Total Items are {cart} and total amount is {sum(total)}")
+                    print("=" * 60)
+                    rerun=input(f"Do you want to add more from {category}? (yes or no): ").lower()
+                    if rerun=="yes":
+                        continue
+                    else:
+                        print("=" * 60)
+                        print(f"Ok Thank you for shopping {category}!")
+                        break
+                else:
+                    print("=" * 60)
+                    print("item not found in the bucket, Please select from below")
+                    continue
+            else:
+                print(f"This {var} is not in stock!")
+                continue
 
 
 
-    #Ending ===================================================
-    receipt(cart, total)    
-    break
+def invent():
+    while True:
+        default = ["pulses","spices","dairy","rice","wheat","computer","mobile_phone","led","graphic_card","charger","mango","potato","apple","spinach","tomato","green_chilli","grapes","onion","pents","shirt","belt","trouser","hoodie","jackets","muffler","panadol","brufen","bascopan","relief","surbex_z","risek"]
+        for i in default:
+            print(f"{i}: stock --> {stock.count(i)}")
+        print("Add inventory first")
+        product=input("Enter a product you want to insert into inventory: ")
+        num=int(input(f"How much you want to add {product} into inventory? specify number:"))
+        if num>1:
+            for i in range(num):
+                stock.append(product)
+            inventoryList.append(product)
+            for i in inventoryList:
+                print(f"{i} : Total Count={stock.count(i)}")
+                
+            rerun=input("Do you want add more product?:").lower()
+            if rerun=="yes":
+                continue
+            else:
+                break
+        else:
+            print("Invalid value! Please add a value of above 1")
+            continue
+
+
+
+def user():
+    while True:
+        select=input("Which category you want to buy? \n1.grocery \n2.electronic \n3.fruit and veg \n4.Clothing: \n5.Pharmacy")
+        print("=" * 60)
+        if select=="1":
+            engine(select,"Grocery")
+        elif select=="2":
+            engine(select,"Electronics")
+        elif select=="3":
+            engine(select,"Fruit and Vegetable")
+        elif select=="4":
+            engine(select,"Clothing")
+        elif select=="5":
+            engine(select,"Pharmacy")
+        else:
+            print("invalid input!")
+            rerun=input("Do you want try again? (yes or no):").lower()
+            if rerun=="yes":
+                continue
+            else:
+                print("Thank you! Bye!")
+                break
+                
+        rerun=input("Do you want to add more from store? \n(yes) for Continue to store \n(no) for exiting for the total bill \n(mod) for modifying your cart!: \n:").lower()
+        if rerun=="yes":
+            continue
+        elif rerun=="mod":
+            modify(cart,total)
+        else:
+            print("Thank you for Shopping!")
+    
+            
+        calc_total(cart,total)
+        break
+
+
+def start():
+    role = input("Enter your role. (1.Admin, 2.User): ").lower()
+    userName = input("Enter your username: ")
+
+    if role == "1" or role == "admin" and userName == "tariq001":
+        print(f"Welcome {userName}, to the admin panel")
+        invent()
+    elif role == "2" or role == "user":
+        print(f"Welcome {userName}, to ecomerce store!")
+        user()
+    else:
+        print("Invalid option.")
+
