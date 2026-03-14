@@ -1,2 +1,1 @@
-"# Python-Programme" 
-"# Python-Programme" 
+Python projects use only fundamentals --> must check programs
