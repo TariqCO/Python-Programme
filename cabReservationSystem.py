@@ -1,3 +1,6 @@
+
+#Challenge is to not use "Dictionary" only use "List" to hold data.
+
 cabTypList = ["Mini", "Rickshaw", "Ride A/C" , "Premium"]
 
 def miniOwnersFunc():
